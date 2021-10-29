@@ -12,11 +12,14 @@ TO SOLVE AN ISSUE THAT OTHERS MIGHT ALSO HAVE.
 
 ## Installation
 
-```ruby
 Gemfile
+```ruby
 gem 'pondus'
+```
 
 app/models/model.rb
+
+```ruby
 class Model
   extend Pondus
 end
@@ -44,6 +47,8 @@ scored_by :title, weight: 25
 
 ## Weight strategy
 
+If a weight is given for a scored_by attribute the strategy for the scoring will automatically be set to :fixed.
+
 ```ruby
 scored_by :description, weight: 10
 scored_by :first_name, weight: 25
@@ -62,6 +67,8 @@ scored_by :middle_name
 scored_by :title
 ```
 
+**Auto attributes are being re-evaluated on each addition of an attribute** (Probably will change)
+
 ## Scoring Strategy
 
 ### String Match
@@ -79,4 +86,6 @@ the same value for their matching by assigning them the same 'param_key'.
 ```ruby
 scored_by :title, param_key: :search
 scored_by :description, param_key: :search
+
+Model.score({ search: 'VALUE' })
 ```
