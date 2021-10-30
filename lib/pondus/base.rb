@@ -10,11 +10,18 @@ module Pondus
     end
 
     def scored(sort_params = {})
-      Class.new(Matcher).new(
-        all,
-        @pondus_scored_config.scored_attributes,
-        sort_params
-      ).sort
+      models_for_scoring = all
+      return @pondus_scored_config.model_class.none if models_for_scoring.empty?
+
+      if sort_params.empty? || @pondus_scored_config.scored_attributes&.empty?
+        models_for_scoring
+      else
+        Matcher.new(
+          models_for_scoring,
+          @pondus_scored_config.scored_attributes,
+          sort_params
+        ).sort
+      end
     end
 
     def pondus_scored_config

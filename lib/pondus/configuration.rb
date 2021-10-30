@@ -17,7 +17,6 @@ module Pondus
     def score_attribute(attribute)
       @scored_attributes << attribute
       balance_attribute_weights # TBD
-      p @scored_attributes
     end
 
     # TODO: Refactor && Test

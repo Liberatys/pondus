@@ -6,8 +6,6 @@ module Pondus
       class << self
         # TODO: Implement
         def score(partial, complete)
-          p partial
-          p complete
           return MAX_SCORE if partial.blank?
           return MIN_SCORE if complete.blank?
 
