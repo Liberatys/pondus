@@ -1,8 +1,6 @@
 module Pondus
   module Strategies
     class StringMatcher
-      MAX_SCORE = 100
-      MIN_SCORE = 0
       class << self
         # TODO: Implement
         def score(partial, complete)

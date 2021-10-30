@@ -6,6 +6,7 @@ require_relative "pondus/configuration"
 require_relative "pondus/attribute"
 require_relative "pondus/matcher"
 require_relative "pondus/strategies/string_matcher"
+require_relative "pondus/strategies/boolean_matcher"
 
 module Pondus
   class Error < StandardError; end

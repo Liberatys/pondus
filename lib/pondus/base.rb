@@ -1,4 +1,7 @@
 module Pondus
+  MAX_SCORE = 100
+  MIN_SCORE = 0
+
   module Base
     def scored_by(attribute, options = {})
       pondus_scored_config.score_attribute(
@@ -13,7 +16,7 @@ module Pondus
       models_for_scoring = all
       return @pondus_scored_config.model_class.none if models_for_scoring.empty?
 
-      if sort_params.empty? || @pondus_scored_config.scored_attributes&.empty?
+      if @pondus_scored_config.scored_attributes && @pondus_scored_config.scored_attributes.empty?
         models_for_scoring
       else
         Matcher.new(

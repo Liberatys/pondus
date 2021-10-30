@@ -32,11 +32,14 @@ module Pondus
     end
 
     def unweighted_score(attribute, model_instance)
+      model_column = model_instance.send(attribute.column)
       case attribute.strategy
       when :string_match
-        Strategies::StringMatcher.score(model_instance.send(attribute.column), @sort_params[attribute.param_key])
+        Strategies::StringMatcher.score(@sort_params[attribute.param_key], model_column)
+      when :boolean
+        Strategies::BooleanMatcher.score(model_column, attribute.expected_value)
       else
-        Strategies::StringMatcher.score(model_instance.send(attribute.column), @sort_params[attribute.param_key])
+        Strategies::StringMatcher.score(@sort_params[attribute.param_key], model_column)
       end
     end
   end
