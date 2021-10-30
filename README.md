@@ -72,10 +72,21 @@ scored_by :title
 ## Scoring Strategy
 
 ### String Match
+
 Will return a score between 0 and 100 depending on the similarity of the 'search' term and the column value.
 
 ```ruby
 scored_by :description, strategy: :string_match
+```
+
+## Boolean Matcher
+
+Will return a score of 100 if the column value is equal to the expected_value. Otherwise returns 0.
+
+expected_value defaults to **true**.
+
+```ruby
+scored_by :main, strategy: :boolean, expected_value: true
 ```
 
 ## Param Key
